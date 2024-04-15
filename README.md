@@ -15,7 +15,7 @@ Here's a summary of the key points covered in the document:
 
 06. GitHub Secrets: It emphasizes the importance of securely storing sensitive information, such as service principal credentials, as GitHub Secrets. These secrets are then used within the GitHub Actions workflow to authenticate with Azure.
 
-07 Execution: 
+07. Execution: 
 --------------------
 
 
@@ -37,9 +37,11 @@ Variable Types and Defaults: Optionally, you can specify the type of each variab
 outputs.tf:
 This file is used to define output values that you want to extract from the deployed Azure resources. Outputs can be useful for retrieving information about resources after they have been provisioned. Here's what it typically includes:
 
-Output Variables: Declares output variables such as key_vault_id, key_vault_uri, key_vault_name, etc. These variables represent information you want to extract from the deployed Azure Key Vault resource.
+Output Variables: Declares output variables such as key_vault_id, key_vault_uri, key_vault_name, etc. 
 
 Value Extraction: Specifies how to extract the desired information from the Azure Key Vault resource. This typically involves referencing attributes of the resource using interpolation syntax.
+
+
 ---------------------------------------------------------------------
 
 Azure Service Principal:
@@ -55,6 +57,7 @@ az ad sp create-for-rbac --name <SP_NAME>
 Replace <SP_NAME> with the name you want to give to your service principal.
 
 Note down the Credentials, output the details of the service principal, including the appId (client ID) and password (client secret).
+
 -----------------------------------------------------------------------
 
 GitHub Secrets
@@ -63,9 +66,13 @@ To add a secret to your repository:
 
 Navigate to GitHub repository.
 >Go to the "Settings" tab.
+
 >In the left sidebar, click on "Secrets".
+
 >Click on the "New repository secret" button.
+
 >Enter a name for your secret (e.g.,CLIENT_ID,CLIENT_SECRET, SUBSCRIPTION_ID, TENANT_ID ) and paste the value from SP_NAME creation steup into the "Value" field.
+
 >Click on "Add secret" to save the secret.
 
 
