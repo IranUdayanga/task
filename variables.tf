@@ -12,6 +12,7 @@ variable "resource_group_name" {
 
 variable "sku_name" {
   description = "SKU of the Azure Key Vault"
+  default     = "standard"
 }
 
 variable "tenant_id" {
@@ -24,20 +25,30 @@ variable "object_id" {
 
 variable "secret_permissions" {
   description = "Permissions for secrets"
+  type        = list(string)
+  default     = ["get", "list"]
 }
 
 variable "key_permissions" {
   description = "Permissions for keys"
+  type        = list(string)
+  default     = ["get", "list"]
 }
 
 variable "enabled_for_deployment" {
   description = "Specifies whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault."
+  type        = bool
+  default     = false
 }
 
 variable "enabled_for_disk_encryption" {
   description = "Specifies whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys."
+  type        = bool
+  default     = false
 }
 
 variable "enabled_for_template_deployment" {
   description = "Specifies whether Azure Resource Manager is permitted to retrieve secrets from the key vault."
+  type        = bool
+  default     = false
 }
