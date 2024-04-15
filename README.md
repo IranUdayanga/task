@@ -1,4 +1,7 @@
-Document Summary ----------------
+--------------------------------------------------------------Document Summary ----------------
+
+
+
 The document provides a comprehensive guide for provisioning an Azure Key Vault using Terraform scripts and GitHub Actions. It outlines the steps to automate the deployment process and ensure consistency and reliability in managing Azure resources.
 
 Here's a summary of the key points covered in the document:
