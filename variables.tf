@@ -12,7 +12,6 @@ variable "resource_group_name" {
 
 variable "sku_name" {
   description = "SKU of the Azure Key Vault"
-  default     = "standard"
 }
 
 variable "tenant_id" {

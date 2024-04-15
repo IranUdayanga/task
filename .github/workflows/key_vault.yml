@@ -13,6 +13,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.CLIENT_ID }}",
+            "clientSecret": "${{ secrets.CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.TENANT_ID }}"
+          }
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
@@ -22,12 +33,19 @@ jobs:
       run: terraform init
 
     - name: Terraform Plan
-      run: terraform plan
+      run: |
+        terraform plan \
+          -var "key_vault_name=my-key-vault" \
+          -var "location=East US" \
+          -var "resource_group_name=my-resource-group" \
+          -var "sku_name=standard" \
+          -var "tenant_id=your-tenant-id" \
+          -var "object_id=your-object-id" \
+          -var 'secret_permissions=["get", "list"]' \
+          -var 'key_permissions=["get", "list"]' \
+          -var "enabled_for_deployment=false" \
+          -var "enabled_for_disk_encryption=false" \
+          -var "enabled_for_template_deployment=false"
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      env:
-        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
