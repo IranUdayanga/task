@@ -35,12 +35,12 @@ jobs:
     - name: Terraform Plan
       run: |
         terraform plan \
-          -var "key_vault_name=my-key-vault" \
+          -var "key_vault_name=my-Test" \
           -var "location=East US" \
-          -var "resource_group_name=my-resource-group" \
+          -var "resource_group_name=IRAN-RND" \
           -var "sku_name=standard" \
-          -var "tenant_id=your-tenant-id" \
-          -var "object_id=your-object-id" \
+          -var "tenant_id=0707a631-f38c-4306-a7b8-1688bf331058" \
+          -var "object_id=acf0a1b9-c3d6-4e48-9dca-081947781901" \
           -var 'secret_permissions=["get", "list"]' \
           -var 'key_permissions=["get", "list"]' \
           -var "enabled_for_deployment=false" \
